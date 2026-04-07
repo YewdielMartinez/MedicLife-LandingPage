@@ -19,11 +19,31 @@ export function Hero({ mode }: HeroProps) {
 
   useGSAP(
     () => {
+      // Read the final text color before splitting so we can animate back to it
+      const titleEl = container.current!.querySelector<HTMLElement>("[data-hero-title]")!;
+      const finalColor = getComputedStyle(titleEl).color;
+
       const titleSplit = SplitText.create("[data-hero-title]", { type: "chars" });
       const taglineSplit = SplitText.create("[data-hero-tagline]", { type: "words" });
       const subtitleSplit = SplitText.create("[data-hero-subtitle]", {
         type: "lines",
         mask: "lines",
+      });
+
+      // Preset hues: rojo → naranja → amarillo → verde → teal → azul → morado → rubí → rojo
+      const charColors = [
+        "#e84037", // rojo    → M  (crimson-red)
+        "#f7830f", // naranja → e  (orange-bright)
+        "#ffca3a", // amarillo→ d  (yellow)
+        "#6a994e", // verde   → i  (green-amazon)
+        "#3c6e71", // teal    → c  (teal)
+        "#4d51db", // azul    → L  (royal-indigo)
+        "#7848f4", // morado  → i  (soft-pop)
+        "#913358", // rubí    → f  (ruby-wine)
+        "#c1121f", // rojo    → e  (red)
+      ];
+      titleSplit.chars.forEach((char, i) => {
+        gsap.set(char, { color: charColors[i % charColors.length] });
       });
 
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
@@ -32,12 +52,18 @@ export function Hero({ mode }: HeroProps) {
         y: 80,
         opacity: 0,
         stagger: 0.05,
-        duration: 0.9,
+        duration: 0.8,
       })
+        // after entry, transition each char back to its natural text color
+        .to(
+          titleSplit.chars,
+          { color: finalColor, stagger: 0.05, duration: 0.4, ease: "power2.inOut" },
+          "+=0.15",
+        )
         .to(
           "[data-hero-divider]",
           { scaleX: 1, duration: 0.8, ease: "power3.inOut" },
-          "-=0.4",
+          "-=0.3",
         )
         .from(
           taglineSplit.words,
