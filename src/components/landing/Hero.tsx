@@ -19,9 +19,9 @@ export function Hero({ mode }: HeroProps) {
 
   useGSAP(
     () => {
-      // Read the final text color before splitting so we can animate back to it
-      const titleEl = container.current!.querySelector<HTMLElement>("[data-hero-title]")!;
-      const finalColor = getComputedStyle(titleEl).color;
+      // Derive final color from the mode prop (avoids timing issues with .dark class
+      // not yet applied when useLayoutEffect / useGSAP runs)
+      const finalColor = mode === "dark" ? "#f3f4f6" : "#1a1a2e";
 
       const titleSplit = SplitText.create("[data-hero-title]", { type: "chars" });
       const taglineSplit = SplitText.create("[data-hero-tagline]", { type: "words" });
@@ -54,10 +54,17 @@ export function Hero({ mode }: HeroProps) {
         stagger: 0.05,
         duration: 0.8,
       })
-        // after entry, transition each char back to its natural text color
+        // after entry, transition each char back to its natural text color,
+        // then clear inline styles so CSS var(--mode-text) controls the color on mode switch
         .to(
           titleSplit.chars,
-          { color: finalColor, stagger: 0.05, duration: 0.4, ease: "power2.inOut" },
+          {
+            color: finalColor,
+            stagger: 0.05,
+            duration: 0.4,
+            ease: "power2.inOut",
+            onComplete: () => { gsap.set(titleSplit.chars, { clearProps: "color" }); },
+          },
           "+=0.15",
         )
         .to(
