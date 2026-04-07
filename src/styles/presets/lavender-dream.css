@@ -1,0 +1,17 @@
+/* 
+label: Lavender Dream
+value: lavender-dream
+description: Tema lavanda soñador
+*/
+
+:root.theme-lavender-dream {
+  --theme-primary: #e6a1f5;
+  --theme-accent: #ca8ed7;
+  --theme-text-on-primary: #000000;
+}
+
+.mode-dark:root.theme-lavender-dream {
+  --theme-primary: #ae7bb9;
+  --theme-accent: #e6a1f5;
+  --theme-text-on-primary: #ffffff;
+}

@@ -1,0 +1,11 @@
+/* 
+label: Teal
+value: teal
+description: Verde azulado profesional
+*/
+
+:root.theme-teal {
+    --theme-primary: #3c6e71;
+    --theme-accent: #3c6e71;
+    --theme-text-on-primary: #ffffff;
+}

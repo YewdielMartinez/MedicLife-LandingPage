@@ -1,0 +1,17 @@
+/* 
+label: Neon Green
+value: neon-green
+description: Tema verde neón vibrante
+*/
+
+:root.theme-neon-green {
+  --theme-primary: #2ec505;
+  --theme-accent: #2dad0f;
+  --theme-text-on-primary: #ffffff;
+}
+
+.mode-dark:root.theme-neon-green {
+  --theme-primary: #2dad0f;
+  --theme-accent: #2ec505;
+  --theme-text-on-primary: #ffffff;
+}

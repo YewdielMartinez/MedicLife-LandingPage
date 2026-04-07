@@ -1,0 +1,11 @@
+/* 
+label: Morado
+value: purple
+description: Morado profundo y elegante
+*/
+
+:root.theme-purple {
+    --theme-primary: #372549;
+    --theme-accent: #372549;
+    --theme-text-on-primary: #ffffff;
+}

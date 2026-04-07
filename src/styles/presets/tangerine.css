@@ -1,0 +1,11 @@
+/* 
+label: Tangerine
+value: tangerine
+description: Naranja coral cálido
+*/
+
+:root.theme-tangerine {
+    --theme-primary: #e3734c;
+    --theme-accent: #e3734c;
+    --theme-text-on-primary: #ffffff;
+}

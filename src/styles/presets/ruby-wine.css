@@ -1,0 +1,17 @@
+/* 
+label: Ruby Wine
+value: ruby-wine
+description: Tema vino rubí elegante
+*/
+
+:root.theme-ruby-wine {
+  --theme-primary: #913358;
+  --theme-accent: #802f4e;
+  --theme-text-on-primary: #ffffff;
+}
+
+.mode-dark:root.theme-ruby-wine {
+  --theme-primary: #802f4e;
+  --theme-accent: #913358;
+  --theme-text-on-primary: #ffffff;
+}

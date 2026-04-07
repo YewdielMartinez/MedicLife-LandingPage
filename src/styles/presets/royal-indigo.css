@@ -1,0 +1,16 @@
+/* 
+label: Royal Indigo
+value: royal-indigo
+*/
+
+:root.theme-royal-indigo {
+  --theme-primary: #4d51db;
+  --theme-accent: #6763e0;
+  --theme-text-on-primary: #ffffff;
+}
+
+.mode-dark:root.theme-royal-indigo {
+  --theme-primary: #6763e0;
+  --theme-accent: #7e75e4;
+  --theme-text-on-primary: #ffffff;
+}

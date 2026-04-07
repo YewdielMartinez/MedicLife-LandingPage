@@ -1,0 +1,45 @@
+/* 
+label: Pediatría Calmada
+value: calm-pediatric
+description: Tema suave y calmante optimizado para consultorios pediátricos y psicología infantil
+*/
+
+:root.theme-calm-pediatric {
+  /* Colores principales */
+  --theme-primary: #a6c8ff;
+  --theme-secondary: #e3c8ff;
+  --theme-accent: #ffc1c1;
+  /* Estados */
+  --theme-success: #b8e4c9;
+  --theme-warning: #fff5ba;
+  --theme-error: #f2b3b3;
+  /* Fondo */
+  --theme-background: #fbfbfe;
+  --theme-surface: #f4f6fc;
+  /* Texto */
+  --theme-text-primary: #3b3b4f;
+  --theme-text-secondary: #6b6b85;
+  --theme-text-on-primary: #2e2e3a;
+  /* Bordes y enfoque */
+  --theme-border: #dde1f0;
+  --theme-focus: #a6c8ff;
+  /* Sombras suaves */
+  --theme-shadow: rgba(60, 60, 90, 0.08);
+}
+
+.mode-dark:root.theme-calm-pediatric {
+  --theme-primary: #6f8fcf;
+  --theme-secondary: #8d74b3;
+  --theme-accent: #c98b8b;
+  --theme-success: #7fb9a2;
+  --theme-warning: #c9bd7a;
+  --theme-error: #b87575;
+  --theme-background: #262636;
+  --theme-surface: #2f2f42;
+  --theme-text-primary: #f0f1fa;
+  --theme-text-secondary: #c8c9de;
+  --theme-text-on-primary: #ffffff;
+  --theme-border: #44445f;
+  --theme-focus: #a6c8ff;
+  --theme-shadow: rgba(0, 0, 0, 0.25);
+}

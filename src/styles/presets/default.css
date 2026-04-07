@@ -1,0 +1,17 @@
+/* 
+label: Negro (Default)
+value: default
+description: Tema principal con negro puro en modo claro, blanco en modo oscuro
+*/
+
+:root.theme-default {
+  --theme-primary: #000000;
+  --theme-accent: #000000;
+  --theme-text-on-primary: #ffffff;
+}
+
+.mode-dark:root.theme-default {
+  --theme-primary: #ffffff;
+  --theme-accent: #ffffff;
+  --theme-text-on-primary: #000000;
+}

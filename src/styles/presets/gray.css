@@ -1,0 +1,11 @@
+/* 
+label: Gris
+value: gray
+description: Gris neutro y versátil
+*/
+
+:root.theme-gray {
+    --theme-primary: #374151;
+    --theme-accent: #6b7280;
+    --theme-text-on-primary: #ffffff;
+}

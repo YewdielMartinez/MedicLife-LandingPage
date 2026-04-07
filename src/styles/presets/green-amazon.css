@@ -1,0 +1,11 @@
+/* 
+label: Verde Amazon
+value: green-amazon
+description: Verde vibrante inspirado en la naturaleza
+*/
+
+:root.theme-green-amazon {
+    --theme-primary: #6a994e;
+    --theme-accent: #6a994e;
+    --theme-text-on-primary: #ffffff;
+}

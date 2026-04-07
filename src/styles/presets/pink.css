@@ -1,0 +1,11 @@
+/* 
+label: Rosa
+value: pink
+description: Rosa pastel suave
+*/
+
+:root.theme-pink {
+    --theme-primary: #fad2e1;
+    --theme-accent: rgba(250, 210, 225, 0.8);
+    --theme-text-on-primary: #000000;
+}

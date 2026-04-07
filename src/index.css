@@ -1,0 +1,201 @@
+@import "tailwindcss";
+
+/* ========================================== */
+/* FONT: NB International Regular             */
+/* ========================================== */
+@font-face {
+  font-family: "NB International";
+  src: url("./styles/fonts/NB International Regular/NB International Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ========================================== */
+/* SHOWCASE FONTS (variable, regular only)    */
+/* ========================================== */
+@font-face { font-family: "Inter"; src: url("./assets/fonts/Inter/Inter-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "DM Sans"; src: url("./assets/fonts/DM_Sans/DMSans-VariableFont_opsz,wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Plus Jakarta Sans"; src: url("./assets/fonts/Plus_Jakarta_Sans/PlusJakartaSans-VariableFont_wght.ttf") format("truetype"); font-weight: 200 800; font-display: swap; }
+@font-face { font-family: "Outfit"; src: url("./assets/fonts/Outfit/Outfit-VariableFont_wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Montserrat"; src: url("./assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Raleway"; src: url("./assets/fonts/Raleway/Raleway-VariableFont_wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Open Sans"; src: url("./assets/fonts/Open_Sans/OpenSans-VariableFont_wdth,wght.ttf") format("truetype"); font-weight: 300 800; font-display: swap; }
+@font-face { font-family: "Roboto"; src: url("./assets/fonts/Roboto/Roboto-VariableFont_wdth,wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Poppins"; src: url("./assets/fonts/Poppins/Poppins-Regular.ttf") format("truetype"); font-weight: 400; font-display: swap; }
+@font-face { font-family: "IBM Plex Sans"; src: url("./assets/fonts/IBM_Plex_Sans/IBMPlexSans-VariableFont_wdth,wght.ttf") format("truetype"); font-weight: 100 700; font-display: swap; }
+@font-face { font-family: "Google Sans Flex"; src: url("./assets/fonts/Google_Sans_Flex/GoogleSansFlex-VariableFont_GRAD,ROND,opsz,slnt,wdth,wght.ttf") format("truetype"); font-weight: 100 900; font-display: swap; }
+@font-face { font-family: "Source Code Pro"; src: url("./assets/fonts/Source_Code_Pro/SourceCodePro-VariableFont_wght.ttf") format("truetype"); font-weight: 200 900; font-display: swap; }
+
+/* ========================================== */
+/* TAILWIND THEME TOKENS                      */
+/* ========================================== */
+@theme {
+  --font-sans: "NB International", system-ui, -apple-system, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+/* ========================================== */
+/* DARK MODE: class-based strategy            */
+/* ========================================== */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ========================================== */
+/* MODE VARIABLES (Light / Dark)              */
+/* ========================================== */
+:root {
+  /* Mode: Light */
+  --mode-background: #ffffff;
+  --mode-surface: #f8f9fa;
+  --mode-surface-hover: #f0f1f3;
+  --mode-text: #1a1a2e;
+  --mode-text-secondary: #6b7280;
+  --mode-text-muted: #9ca3af;
+  --mode-border: #e5e7eb;
+  --mode-border-hover: #d1d5db;
+  --mode-shadow: rgba(0, 0, 0, 0.08);
+  --mode-shadow-lg: rgba(0, 0, 0, 0.12);
+  --mode-overlay: rgba(0, 0, 0, 0.5);
+  --mode-code-bg: #f3f4f6;
+
+  /* Theme accent (overridden by presets) */
+  --theme-primary: #000000;
+  --theme-accent: #000000;
+  --theme-text-on-primary: #ffffff;
+
+  /* Derived from theme-primary */
+  --theme-primary-hover: color-mix(in srgb, var(--theme-primary), #000 12%);
+  --theme-primary-light: color-mix(in srgb, var(--theme-primary), transparent 88%);
+  --theme-primary-border: color-mix(in srgb, var(--theme-primary), transparent 60%);
+}
+
+.dark {
+  --mode-background: #000000;
+  --mode-surface: #0a0a0f;
+  --mode-surface-hover: #111118;
+  --mode-text: #f3f4f6;
+  --mode-text-secondary: #9ca3af;
+  --mode-text-muted: #6b7280;
+  --mode-border: #1f2028;
+  --mode-border-hover: #2e303a;
+  --mode-shadow: rgba(0, 0, 0, 0.4);
+  --mode-shadow-lg: rgba(0, 0, 0, 0.6);
+  --mode-overlay: rgba(0, 0, 0, 0.7);
+  --mode-code-bg: #111118;
+
+  --theme-primary-hover: color-mix(in srgb, var(--theme-primary), #fff 15%);
+  --theme-primary-light: color-mix(in srgb, var(--theme-primary), transparent 85%);
+  --theme-primary-border: color-mix(in srgb, var(--theme-primary), transparent 55%);
+}
+
+/* ========================================== */
+/* BASE STYLES                                */
+/* ========================================== */
+html {
+  font-family: "NB International", system-ui, -apple-system, sans-serif;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  background: var(--mode-background);
+  color: var(--mode-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* ========================================== */
+/* VIEW TRANSITIONS                           */
+/* ========================================== */
+@import "./styles/view-transitions/base-transitions.css";
+@import "./styles/view-transitions/theme-transitions.css";
+
+/* ========================================== */
+/* NAVBAR: Full bar transitions               */
+/* ========================================== */
+.bar-full {
+  transition: opacity 0.35s ease, transform 0.35s ease, box-shadow 0.3s ease;
+}
+.bar-full.bar-shadow {
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.07);
+}
+.dark .bar-full.bar-shadow {
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.05);
+}
+.bar-full.bar-hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-100%);
+}
+
+/* ========================================== */
+/* NAVBAR: Floating pill transitions          */
+/* ========================================== */
+.nav-pill-glass {
+  transform: translateX(-50%) translateY(-10px);
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+    transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+.nav-pill-glass.pill-visible {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* ========================================== */
+/* NAVBAR: Liquid glass effect                */
+/* ========================================== */
+.nav-pill-glass {
+  background: rgba(245, 245, 250, 0.70);
+  backdrop-filter: blur(1px) url(#pill-displace) blur(22px) saturate(2) brightness(1.04);
+  -webkit-backdrop-filter: blur(22px) saturate(2) brightness(1.04);
+  border: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.75),
+    inset 1.8px 3px 0px -2px rgba(255, 255, 255, 0.90),
+    inset -2px -2px 0px -2px rgba(255, 255, 255, 0.80),
+    inset -3px -8px 1px -6px rgba(255, 255, 255, 0.60),
+    inset -0.3px -1px 4px 0px rgba(0, 0, 0, 0.12),
+    inset 0px 3px 4px -2px rgba(0, 0, 0, 0.08),
+    0px 1px 5px 0px rgba(0, 0, 0, 0.10),
+    0px 4px 16px 0px rgba(0, 0, 0, 0.08);
+}
+
+/* Specular rim highlight */
+.nav-pill-glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    174deg,
+    rgba(255, 255, 255, 0.72) 0%,
+    rgba(255, 255, 255, 0.12) 32%,
+    transparent 56%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Dark mode: pill glass */
+.dark .nav-pill-glass {
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(20px) saturate(1.8);
+  -webkit-backdrop-filter: blur(20px) saturate(1.8);
+  border: none;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.28),
+    inset 1.8px 3px 0px -2px rgba(255, 255, 255, 0.27),
+    inset -2px -2px 0px -2px rgba(255, 255, 255, 0.24),
+    inset -3px -8px 1px -6px rgba(255, 255, 255, 0.18),
+    inset -0.3px -1px 4px 0px rgba(0, 0, 0, 0.24),
+    inset 0px 3px 4px -2px rgba(0, 0, 0, 0.20),
+    0 4px 20px rgba(0, 0, 0, 0.50);
+}
+.dark .nav-pill-glass::before {
+  background: none;
+}

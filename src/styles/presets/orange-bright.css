@@ -1,0 +1,11 @@
+/* 
+label: Naranja Brillante
+value: orange-bright
+description: Naranja luminoso y alegre
+*/
+
+:root.theme-orange-bright {
+    --theme-primary: #f7830f;
+    --theme-accent: rgba(247, 131, 15, 0.7);
+    --theme-text-on-primary: #ffffff;
+}

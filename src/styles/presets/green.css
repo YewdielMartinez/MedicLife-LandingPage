@@ -1,0 +1,11 @@
+/* 
+label: Verde
+value: green
+description: Tema verde natural
+*/
+
+:root.theme-green {
+    --theme-primary: #588157;
+    --theme-accent: #588157;
+    --theme-text-on-primary: #ffffff;
+}

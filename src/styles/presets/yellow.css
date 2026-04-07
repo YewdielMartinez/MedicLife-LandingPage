@@ -1,0 +1,11 @@
+/* 
+label: Amarillo
+value: yellow
+description: Amarillo cálido y luminoso
+*/
+
+:root.theme-yellow {
+    --theme-primary: #ffca3a;
+    --theme-accent: rgba(255, 202, 58, 0.8);
+    --theme-text-on-primary: #000000;
+}

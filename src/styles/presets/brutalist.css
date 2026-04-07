@@ -1,0 +1,11 @@
+/* 
+label: Brutalist
+value: brutalist
+description: Rojo intenso con amarillo neón
+*/
+
+:root.theme-brutalist {
+    --theme-primary: #d9534f;
+    --theme-accent: #d9534f;
+    --theme-text-on-primary: #ffffff;
+}

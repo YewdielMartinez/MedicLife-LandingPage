@@ -1,0 +1,11 @@
+/* 
+label: Verde Fern
+value: green-fern
+description: Verde con acento dual
+*/
+
+:root.theme-green-fern {
+    --theme-primary: #6a994e;
+    --theme-accent: #588157;
+    --theme-text-on-primary: #ffffff;
+}

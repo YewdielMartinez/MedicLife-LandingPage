@@ -1,0 +1,11 @@
+/* 
+label: Rojo
+value: red
+description: Rojo intenso y llamativo
+*/
+
+:root.theme-red {
+    --theme-primary: #c1121f;
+    --theme-accent: #c1121f;
+    --theme-text-on-primary: #ffffff;
+}

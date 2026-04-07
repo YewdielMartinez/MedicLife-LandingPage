@@ -1,0 +1,17 @@
+/* 
+label: Crimson Red
+value: crimson-red
+description: Tema rojo carmesí intenso
+*/
+
+:root.theme-crimson-red {
+  --theme-primary: #e84037;
+  --theme-accent: #cc3b32;
+  --theme-text-on-primary: #ffffff;
+}
+
+.mode-dark:root.theme-crimson-red {
+  --theme-primary: #cc3b32;
+  --theme-accent: #e84037;
+  --theme-text-on-primary: #ffffff;
+}

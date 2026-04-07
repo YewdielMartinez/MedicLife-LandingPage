@@ -1,0 +1,11 @@
+/* 
+label: Azul
+value: blue
+description: Tema azul marino profesional
+*/
+
+:root.theme-blue {
+    --theme-primary: #003566;
+    --theme-accent: #003566;
+    --theme-text-on-primary: #ffffff;
+}

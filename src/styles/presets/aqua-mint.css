@@ -1,0 +1,17 @@
+/* 
+label: Aqua Mint
+value: aqua-mint
+description: Tema turquesa mint refrescante
+*/
+
+:root.theme-aqua-mint {
+  --theme-primary: #57e5d7;
+  --theme-accent: #4fc9bc;
+  --theme-text-on-primary: #000000;
+}
+
+.mode-dark:root.theme-aqua-mint {
+  --theme-primary: #47ada3;
+  --theme-accent: #57e5d7;
+  --theme-text-on-primary: #ffffff;
+}

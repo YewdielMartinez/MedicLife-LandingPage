@@ -1,0 +1,59 @@
+/* ============================================ */
+
+/* DASHBOARD VIEW TRANSITIONS                  */
+
+/* Animaciones para widgets del dashboard      */
+
+/* ============================================ */
+
+/* Smooth transitions para dashboard widgets */
+
+[class*="dashboard-widget"] {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Estado inicial para animaciones GSAP */
+
+.dashboard-animate {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Widget change transitions con View Transitions */
+
+::view-transition-group(dashboard-widget) {
+  animation-duration: 400ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-old(dashboard-widget) {
+  animation: dashboard-widget-fade-out 400ms both cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+::view-transition-new(dashboard-widget) {
+  animation: dashboard-widget-fade-in 400ms both cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Keyframes específicos para widgets */
+
+@keyframes dashboard-widget-fade-out {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes dashboard-widget-fade-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}

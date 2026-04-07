@@ -1,0 +1,11 @@
+/* 
+label: Naranja
+value: orange
+description: Naranja vibrante y energético
+*/
+
+:root.theme-orange {
+    --theme-primary: #f85e00;
+    --theme-accent: rgba(248, 94, 0, 0.8);
+    --theme-text-on-primary: #ffffff;
+}

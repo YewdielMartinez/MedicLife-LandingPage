@@ -1,0 +1,11 @@
+/* 
+label: Morado Pastel
+value: purple-pastel
+description: Morado suave y claro
+*/
+
+:root.theme-purple-pastel {
+    --theme-primary: #ccccff;
+    --theme-accent: rgba(204, 204, 255, 0.7);
+    --theme-text-on-primary: #000000;
+}

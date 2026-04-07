@@ -1,0 +1,71 @@
+/* ============================================ */
+
+/* THEME VIEW TRANSITIONS                      */
+
+/* Animaciones para cambios de tema/modo       */
+
+/* ============================================ */
+
+/* Configuración del grupo de transición para temas */
+
+::view-transition-group(theme-change) {
+  animation-duration: 600ms;
+  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Propiedades para elementos en transición de tema */
+
+::view-transition-old(theme-change),
+::view-transition-new(theme-change) {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  overflow: clip;
+  mix-blend-mode: normal;
+}
+
+/* Blur out del tema anterior - Oculta completamente el contenido */
+
+::view-transition-old(theme-change) {
+  animation: vt-theme-blur-out 600ms both cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Blur in del nuevo tema - Emerge limpiamente */
+
+::view-transition-new(theme-change) {
+  animation: vt-theme-blur-in 600ms both cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Blur cinematográfico out - El tema se desvanece en blur intenso */
+
+@keyframes vt-theme-blur-out {
+  0% {
+    filter: blur(0px) saturate(100%) brightness(100%);
+  }
+  100% {
+    filter: blur(50px) saturate(40%) brightness(60%);
+  }
+}
+
+/* Blur cinematográfico in - El tema emerge vibrante desde blur */
+
+@keyframes vt-theme-blur-in {
+  0% {
+    filter: blur(50px) saturate(160%) brightness(140%);
+  }
+  100% {
+    filter: blur(0px) saturate(100%) brightness(100%);
+  }
+}
+
+/* Respetar preferencias de accesibilidad - disable animations */
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(theme-change) {
+    animation-duration: 0s;
+  }
+  ::view-transition-old(theme-change),
+  ::view-transition-new(theme-change) {
+    animation: none;
+  }
+}

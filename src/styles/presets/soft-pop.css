@@ -1,0 +1,11 @@
+/* 
+label: Soft Pop
+value: soft-pop
+description: Morado vibrante con cyan suave
+*/
+
+:root.theme-soft-pop {
+    --theme-primary: #7848f4;
+    --theme-accent: #7848f4;
+    --theme-text-on-primary: #ffffff;
+}
