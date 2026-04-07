@@ -1,10 +1,13 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { ArrowRight } from "iconoir-react";
 import { useLanguage } from "../../lib/i18n/LanguageProvider";
 import { ParticleCanvas } from "./ParticleCanvas";
 import type { ThemeMode } from "../../lib/preferences/preferences-config";
+
+gsap.registerPlugin(SplitText);
 
 interface HeroProps {
   mode: ThemeMode;
@@ -16,29 +19,35 @@ export function Hero({ mode }: HeroProps) {
 
   useGSAP(
     () => {
+      const titleSplit = SplitText.create("[data-hero-title]", { type: "chars" });
+      const taglineSplit = SplitText.create("[data-hero-tagline]", { type: "words" });
+      const subtitleSplit = SplitText.create("[data-hero-subtitle]", {
+        type: "lines",
+        mask: "lines",
+      });
+
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      tl.fromTo(
-        "[data-hero-label]",
-        { y: 20, autoAlpha: 0 },
-        { y: 0, autoAlpha: 1, duration: 0.6 },
-      )
-        .fromTo(
-          "[data-hero-title]",
-          { y: 50, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 1.1 },
-          "-=0.3",
-        )
+      tl.from(titleSplit.chars, {
+        y: 80,
+        opacity: 0,
+        stagger: 0.05,
+        duration: 0.9,
+      })
         .to(
           "[data-hero-divider]",
           { scaleX: 1, duration: 0.8, ease: "power3.inOut" },
-          "-=0.5",
-        )
-        .fromTo(
-          "[data-hero-content] > *",
-          { y: 20, autoAlpha: 0 },
-          { y: 0, autoAlpha: 1, duration: 0.7, stagger: 0.1 },
           "-=0.4",
+        )
+        .from(
+          taglineSplit.words,
+          { y: 20, opacity: 0, stagger: 0.07, duration: 0.6 },
+          "-=0.3",
+        )
+        .from(
+          subtitleSplit.lines,
+          { y: 30, opacity: 0, stagger: 0.1, duration: 0.6 },
+          "-=0.3",
         )
         .fromTo(
           "[data-hero-cta] a",
@@ -64,7 +73,7 @@ export function Hero({ mode }: HeroProps) {
         {/* Giant MedicLife — the brand IS the hero */}
         <h1
           data-hero-title
-          className="invisible font-bold tracking-tighter leading-[0.9] select-none"
+          className="font-bold tracking-tighter leading-[0.9] select-none"
           style={{
             color: "var(--mode-text)",
             fontSize: "clamp(4rem, 12vw, 13rem)",
@@ -88,13 +97,15 @@ export function Hero({ mode }: HeroProps) {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div data-hero-content>
             <p
-              className="invisible mb-2 text-lg font-bold tracking-tight md:text-xl"
+              data-hero-tagline
+              className="mb-2 text-lg font-bold tracking-tight md:text-xl"
               style={{ color: "var(--mode-text)" }}
             >
               {t.hero.tagline}
             </p>
             <p
-              className="invisible max-w-sm text-sm leading-relaxed"
+              data-hero-subtitle
+              className="max-w-sm text-sm leading-relaxed"
               style={{ color: "var(--mode-text-secondary)" }}
             >
               {t.hero.subtitle}
