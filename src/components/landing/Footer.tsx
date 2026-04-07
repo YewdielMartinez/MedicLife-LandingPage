@@ -1,10 +1,25 @@
 import { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { SplitText } from "gsap/SplitText";
 import { useLanguage } from "../../lib/i18n/LanguageProvider";
+
+gsap.registerPlugin(SplitText);
 
 const COL1_HREFS = ["#features", "#customization", "#pricing"];
 const COL2_HREFS = ["#", "#", "#"];
+
+const CHAR_COLORS = [
+  "#e84037", // rojo    → M
+  "#f7830f", // naranja → e
+  "#ffca3a", // amarillo→ d
+  "#6a994e", // verde   → i
+  "#3c6e71", // teal    → c
+  "#4d51db", // azul    → L
+  "#7848f4", // morado  → i
+  "#913358", // rubí    → f
+  "#c1121f", // rojo    → e
+];
 
 export function Footer() {
   const { t } = useLanguage();
@@ -12,7 +27,41 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   useGSAP(
-    () => {
+    (_, contextSafe) => {
+      const pEl = container.current!.querySelector<HTMLElement>("[data-footer-brand]")!;
+      const brandSplit = SplitText.create("[data-footer-brand]", {
+        type: "chars",
+        tag: "span",
+      });
+
+      const cleanups: (() => void)[] = [];
+
+      brandSplit.chars.forEach((char, i) => {
+        const hoverColor = CHAR_COLORS[i % CHAR_COLORS.length];
+
+        const onEnter = contextSafe!(() => {
+          gsap.to(char, { color: hoverColor, duration: 0.2, ease: "power2.out" });
+        });
+
+        const onLeave = contextSafe!(() => {
+          // Read at leave-time so it always matches the current mode
+          const naturalColor = getComputedStyle(pEl).color;
+          gsap.to(char, {
+            color: naturalColor,
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => { gsap.set(char, { clearProps: "color" }); },
+          });
+        });
+
+        char.addEventListener("mouseenter", onEnter);
+        char.addEventListener("mouseleave", onLeave);
+        cleanups.push(() => {
+          char.removeEventListener("mouseenter", onEnter);
+          char.removeEventListener("mouseleave", onLeave);
+        });
+      });
+
       gsap.fromTo(
         "[data-footer-giant]",
         { y: 60, autoAlpha: 0 },
@@ -24,6 +73,8 @@ export function Footer() {
           scrollTrigger: { trigger: "[data-footer-giant]", start: "top 95%" },
         },
       );
+
+      return () => { cleanups.forEach((fn) => fn()); };
     },
     { scope: container },
   );
@@ -69,6 +120,7 @@ export function Footer() {
 
         <div data-footer-giant className="invisible">
           <p
+            data-footer-brand
             className="w-full text-center leading-[0.85] font-bold tracking-tighter select-none"
             style={{
               color: "var(--mode-text)",
